@@ -108,6 +108,7 @@
       wrapper.removeChild(oldEl)
     }
   ```
+> 每次`setState`都重新构造、新增、删除 DOM 元素，会导致浏览器进行大量的重排，严重影响性能。不过没有关系，这种暴力行为可以被一种叫 Virtual-DOM 的策略规避掉
 
 * step5: 把[这种模式](https://github.com/KayanChan/weekly-javascript/blob/master/frontend-componentization/like-abstract-public-component-class.html)抽象出来，代码更灵活，可以写更多组件
   ```javascript
