@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 ### weekly-javascript
 
 #### @2019-07-01  ES6的常用数组操作
-=======
-# weekly-javascript
-
-##### @2019-07-01  ES6的常用数组操作
->>>>>>> 0905a4bef61272c71b887c2602d98071b157d969
 
 数组复制，不可变操作
 
@@ -54,15 +48,12 @@ console.log(result);
 ```js
 var arr = [1,2,3,4,5] ;
 var newArr = arr.map(function(item,index){
-	return item*2 ;
+   return item*2 ;
 }) 
 // arr: [1,2,3,4,5]
 // newArr: [2, 4, 6, 8, 10]
 ```
 
-<<<<<<< HEAD
 #### @2019-07-02  [前端组件化](https://github.com/KayanChan/weekly-javascript/blob/master/frontend-componentization/README.md)（理解基础的 React.js 的概念）
 * 如何尽量减少手动`DOM 操作`：一旦状态发生改变，就重新调用`render`方法，构建一个新的`DOM 元素`。
 * 通过类实现组件的继承，抽象出公共组件类`Component`
-=======
->>>>>>> 0905a4bef61272c71b887c2602d98071b157d969
