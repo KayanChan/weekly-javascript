@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>抽象出公共组件类</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class='wrapper'></div>
+  <p>
+  组件化可以帮助我们解决前端结构的复用性问题，整个页面可以由这样的不同的组件组合、嵌套构成
+  </p>
+  <p>
+  一个组件有自己的显示形态（上面的 HTML 结构和内容）行为，组件的显示形态和行为可以由数据状态（state）和配置参数（props）共同决定。数据状态和配置参数的改变都会影响到这个组件的显示形态。
+  <p>
+  <p>
+  当数据变化的时候，组件的显示需要更新。所以如果组件化的模式能提供一种高效的方式自动化地帮助我们更新页面，那也就可以大大地降低我们代码的复杂度，带来更好的可维护性。
+  </p>
+  </strong>
+  <script type="text/javascript">
+    /* 把这种模式抽象出来，代码更灵活，可以写更多组件 */
+    class Component {
+      constructor(props = {}) {
+        this.props = props
+      }
+      setState(state) {
+        const oldEl = this.el
+        this.state = state
+        this._renderDOM()
+        if(this.onStateChange) this.onStateChange(oldEl, this.el)
+      }
+
+      _renderDOM() {
+        this.el = createDOMFromString(this.render())
+        if(this.onClick) this.el.addEventListener('click', this.onClick.bind(this), false)
+        return this.el
+      }
+    }
+
+    const createDOMFromString = (domString) => {
+      const div = document.createElement('div')
+      div.innerHTML = domString
+      return div
+    }
+
+    const mount = (component, wrapper) => {
+      wrapper.appendChild(component._renderDOM())
+      component.onStateChange = (oldEl, newEl) => {
+        wrapper.insertBefore(newEl, oldEl)
+        wrapper.removeChild(oldEl)
+      }
+    }
+
+    class LikeButton extends Component {
+      constructor(props) {
+        super(props)
+        this.state = {isLiked: false}
+      }
+
+      onClick() {
+        this.setState({
+          isLiked: !this.state.isLiked
+        })
+      }
+
+      render() {
+        return `
+          <button class='like-btn' style="background-color: ${this.props.bgColor}">
+            <span class='like-text'>${this.state.isLiked ? '取消' : '点赞'}</span>
+            <span>👍</span>
+          </button>
+        `
+      }
+    }
+
+    mount(new LikeButton({bgColor: '#999'}), document.querySelector('.wrapper'))
+
+
+    /* 计数器组件 */
+    class Counter extends Component {
+      constructor(props) {
+        super(props)
+        this.state = {count: 0}
+      }
+
+      onClick() {
+        this.setState({
+          count: ++this.state.count
+        })
+      }
+
+      render() {
+        return `<button>计数器</button> <span>${this.state.count}</span>`
+      }
+    }
+
+    mount(new Counter(), document.querySelector('.wrapper'))
+  </script>
+</body>
+</html>

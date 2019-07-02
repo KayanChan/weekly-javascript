@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>通过类构建实例，达到结构复用</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class='wrapper'>
+    <!-- <button class='like-btn'>
+      <span class='like-text'>点赞</span>
+      <span>👍</span>
+    </button> -->
+  </div>
+  <a href="https://github.com/KayanChan/weekly-javascript/blob/master/frontend-componentization/like-simple-componentization.html">下一步 实现简单组件化</a>
+
+  <script type="text/javascript">
+    class LikeButton {
+      render() {
+        return `
+          <button class='like-btn'>
+            <span class='like-text'>点赞</span>
+            <span>👍</span>
+          </button>
+        `
+      }
+    }
+
+    const wrapper = document.querySelector('.wrapper')
+    const likeButton1 = new LikeButton()
+    wrapper.innerHTML = likeButton1.render()
+
+    const likeButton2 = new LikeButton()
+    wrapper.innerHTML += likeButton2.render()
+
+
+    /* 点击事件不生效！！！ */
+    const button = document.querySelector('.like-btn')
+    const buttonText = document.querySelector('.like-text')
+    let isLiked = false
+    button.addEventListener('click', () => {
+      isLiked = !isLiked
+      buttonText.innerHTML = isLiked ? '取消' : '点赞'
+    })
+  </script>
+</body>
+</html>

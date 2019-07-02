@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>实现了一个简单的点赞功能</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class='wrapper'>
+    <button class='like-btn'>
+      <span class='like-text'>点赞</span>
+      <span>👍</span>
+    </button>
+    <a href="https://github.com/KayanChan/weekly-javascript/blob/master/frontend-componentization/like-class.html">下一步 增加一定的复用性</a>
+  </div>
+  <script type="text/javascript">
+    /* 实现了一个简单的点赞功能 */
+    const button = document.querySelector('.like-btn')
+    const buttonText = document.querySelector('.like-text')
+    let isLiked = false
+    button.addEventListener('click', () => {
+      isLiked = !isLiked
+      buttonText.innerHTML = isLiked ? '取消' : '点赞'
+    })
+  </script>
+</body>
+</html>
