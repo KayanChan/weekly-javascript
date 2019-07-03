@@ -257,3 +257,77 @@
     }
   }
   ```
+
+  #### 表单
+  * 受控组件(Controlled Component): 输入控件(`input`、`textarea`、`select`)在组件里的`state`设置了值，值不变，`value`就不变
+  * 输入内容的更新：监听输入控件的`onChange`事件，获得输入内容`event.target.value`，再通过`setState`来更新
+  ```javascript
+  handleUsernameChange(event) {
+    this.setState({
+      username: event.target.value
+    })
+  }
+  ```
+
+  #### 兄弟组件之间的通信
+  父层组件通过`props`给子组件a传递一个回调函数，子组件a触发通信动作，调用`props`中的函数；父层组件内部函数处理`state`，从而通过`props`来更新子组件b的值
+  
+  ```javascript
+  // 组件a
+  ...
+  handleSubmit() {
+    if(!this.state.username) return alert('请输入用户名')
+    if(!this.state.content) return alert('请输入评论')
+    if(this.props.onSubmit) this.props.onSubmit({
+      username: this.state.username,
+      content: this.state.content
+    })
+    this.setState({
+      content: ''
+    })
+  }
+  ...
+  ```
+
+  ```javascript
+  // 父层组件
+  class CommentApp extends Component {
+    constructor() {
+      super()
+      this.state = {
+        lists: []
+      }
+    }
+    handleSubmitComment (comment) {
+      this.setState((prevState) => {
+        return prevState.lists.push(comment)
+      })
+    }
+    render() {
+      return (
+        <div className="wrapper">
+          <CommentInput onSubmit={this.handleSubmitComment.bind(this)}/>
+          <CommentList lists={this.state.lists}/>
+        </div>
+      )
+    }
+  }
+  ```
+
+  ```javascript
+  // 子组件b
+  class CommentList extends Component {
+    static defaultProps = {
+      lists: []
+    }
+    render() {
+      return (
+        this.props.lists.map((item, index) => {
+          return (
+            <Comment key={index} comment={item} />
+          )
+        })
+      )
+    }
+  }
+  ```
