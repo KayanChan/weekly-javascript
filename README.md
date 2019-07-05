@@ -65,11 +65,13 @@ var newArr = arr.map(function(item,index){
 
 #### @2019-07-03 React.js汇总
 
-### catalog
+##### catalog
 
 - [第一部分 基础语法](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/basic-grammer.md)
 
-### Question&Answer
+- [第二部分 生命周期](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/life-cycle.md)
+##### Question&Answer
 
 > 为什么`react-dom`不包含在`react`当中？
 
+> 如何更好的管理这种被多个组件所依赖或影响的状态？

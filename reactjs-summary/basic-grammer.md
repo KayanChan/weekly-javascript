@@ -1,4 +1,5 @@
 ### 第一部分 基础语法
+@2019-07-03 整理出自[这里](http://huziketang.mangojuice.top/books/react/lesson5)
 
 #### 脚手架
   ```bash
@@ -17,7 +18,8 @@
     `import ReactROM from 'react-dom'`
 
 #### JSX原理
-  每个 DOM 元素的结构都可以用 JavaScript 的对象来描述。一个`DOM`元素包含的信息其实只有三个：标签名，属性，子元素
+  * 每个 DOM 元素的结构都可以用 JavaScript 的对象来描述。一个`DOM`元素包含的信息其实只有三个：标签名，属性，子元素
+
   ```javascript
   {
     tag: 'div',
@@ -36,7 +38,7 @@
     ]
   }
   ```
-  `React.createElement`会构建一个 JavaScript 对象来描述`HTML`结构的信息，包括标签名、属性、还有子元素等。由于js对象描述的篇幅过长，于是通过扩展js的语法，即`jsx`来处理。实际`jsx`会通过`Babel编译+React.js的构造`得到`js对象`，从而去操作`DOM`（`React-DOM.render`）。另外，`jsx`不直接操作`DOM`是避免浏览器的重排，性能的优化；而且得到一个表示UI的结构和信息的对象，不一定会把元素渲染到浏览器的普通页面上，如`canvas`。
+  * `React.createElement`会构建一个 JavaScript 对象来描述`HTML`结构的信息，包括标签名、属性、还有子元素等。由于js对象描述的篇幅过长，于是通过扩展js的语法，即`jsx`来处理。实际`jsx`会通过`Babel编译+React.js的构造`得到`js对象`，从而去操作`DOM`（`React-DOM.render`）。另外，`jsx`不直接操作`DOM`是避免浏览器的重排，性能的优化；而且得到一个表示UI的结构和信息的对象，不一定会把元素渲染到浏览器的普通页面上，如`canvas`。
 
 #### render方法
   * 一个组件类必须要实现一个`render`方法
@@ -79,6 +81,8 @@
   * 事件监听只能用在普通的`HTML`的标签上，而不能用在组件标签上
   * 事件监听函数会被自动传入一个`event`对象，具有`event.stopPropagation`、`event.preventDefault`
   * 在事件函数当中使用当前的实例，需要手动地将实例方法`bind`到当前实例上再传入给`React.js`
+  
+  > setTimeout中this的处理: `setTimeout(this._updateTimeString.bind(this), 5000)`
 
   ```javascript
   class UseEventListen extends Component {
@@ -272,6 +276,7 @@
   #### 兄弟组件之间的通信
   父层组件通过`props`给子组件a传递一个回调函数，子组件a触发通信动作，调用`props`中的函数；父层组件内部函数处理`state`，从而通过`props`来更新子组件b的值
   
+  **状态提升**： 当某个状态被多个组件依赖或者影响的时候，就把该状态提升到这些组件的最近公共父组件中去管理，用`props`传递数据或者函数来管理这种依赖或着影响的行为。
   ```javascript
   // 组件a
   ...
