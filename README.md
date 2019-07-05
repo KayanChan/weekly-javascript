@@ -72,6 +72,8 @@
    - [第二部分 生命周期](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/life-cycle.md)
 
    - [第三部分 高阶组件](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/high-order-component.md)
+   
+   - [第四部分 Redux](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/Redux.md)
 
 ##### Question&Answer
 
@@ -79,7 +81,7 @@
 
    > 如何更好的管理这种被多个组件所依赖或影响的状态？
 
-#### @2019-07-05 纯函数(Pure Function)
+#### @2019-07-04 纯函数(Pure Function)
 
    * 函数的返回结果只依赖于它的参数
    * 函数执行过程里面没有副作用
