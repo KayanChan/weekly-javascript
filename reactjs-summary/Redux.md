@@ -182,53 +182,143 @@
 * 优化渲染性能，产生共享结构的对象(没有更新的状态不重新渲染)
 
   ```javascript
-  function createStore(state, stateChanger) {
-    const listeners = []
-    const  subscribe = (listener) => listeners.push(listener)
-    const getState = () => state
-    const dispatch = (action) => {
-        // stateChanger不会直接修改原来的对象，而是返回一个新的对象覆盖
-        state = stateChanger(state, action)
+    function createStore(state, stateChanger) {
+      const listeners = []
+      const  subscribe = (listener) => listeners.push(listener)
+      const getState = () => state
+      const dispatch = (action) => {
+          // stateChanger不会直接修改原来的对象，而是返回一个新的对象覆盖
+          state = stateChanger(state, action)
 
-        listeners.forEach((listener) => listener())
-    }
-    return { getState, dispatch, subscribe }
-  }
-
-  function stateChanger(state, action) {
-      switch(action.type) {
-          case 'UPDATE_TITLE_TEXT':
-              // 构造新的对象并且返回
-              return {
-                  ...state,
-                  title: {
-                      ...state.title,
-                      text: action.text
-                  }
-              }
-          case 'UPDATE_CONTENT_COLOR':
-              return {
-                  ...state,
-                  content: {
-                      ...state.content,
-                      color: action.color
-                  }
-              }
-          default:
-              // 没有修改，返回原来的对象
-              return state
+          listeners.forEach((listener) => listener())
       }
+      return { getState, dispatch, subscribe }
+    }
+
+    function stateChanger(state, action) {
+        switch(action.type) {
+            case 'UPDATE_TITLE_TEXT':
+                // 构造新的对象并且返回
+                return {
+                    ...state,
+                    title: {
+                        ...state.title,
+                        text: action.text
+                    }
+                }
+            case 'UPDATE_CONTENT_COLOR':
+                return {
+                    ...state,
+                    content: {
+                        ...state.content,
+                        color: action.color
+                    }
+                }
+            default:
+                // 没有修改，返回原来的对象
+                return state
+        }
+    }
+
+    const store = createStore(appState, stateChanger)
+    let oldState = store.getState()
+    store.subscribe(() => {
+        const newState = store.getState()
+        console.log(newState === oldState) // => false
+        renderApp(newState, oldState)
+        oldState = newState
+    })
+    renderApp(oldState)
+    store.dispatch({type: 'UPDATE_TITLE_TEXT', text: 'hello'})
+    store.dispatch({type: 'UPDATE_CONTENT_COLOR', color: 'green'})
+  ```
+
+* `Redux`的推演过程总结：
+  1. `appState`为全局变量，
+
+* `Redux`模式的诞生：继续优化成纯函数，`stateChanger` => `reducer`
+
+  1. 把初始化数据`appState`整合到`stateChanger`： 既充当了获取初始化数据的功能(传入的state为`null`)，也充当了生成更新数据的功能
+    ```javascript
+      function stateChanger(state, action) {
+        if(!state) {
+            return {
+                title: {
+                    text: 'React.js',
+                    color: 'red'
+                },
+                content: {
+                    text: 'React',
+                    color: 'blue'
+                }
+            }
+        }
+        switch(action.type) {
+            case 'UPDATE_TITLE_TEXT':
+                return {
+                    ...state,
+                    title: {
+                        ...state.title,
+                        text: action.text
+                    }
+                }
+            case 'UPDATE_CONTENT_COLOR':
+                return {
+                    ...state,
+                    content: {
+                        ...state.content,
+                        color: action.color
+                    }
+                }
+            default:
+                return state
+        }
+      }
+    ```
+
+  2. `createStore`不再接受外部传进去`state`参数，则在内部定义一个局部变量`state`;
+      需要执行一次`dispatch`来调用`stateChanger`来初始化`state`
+    ```javascript
+      function createStore(stateChanger) {
+        let state = null
+        // 存放回调函数
+        const listeners = []
+        // 添加回调函数，回调函数内容就是更新数据之后要处理的业务(如重新渲染页面)
+        const  subscribe = (listener) => listeners.push(listener)
+        const getState = () => state
+        const dispatch = (action) => {
+            state = stateChanger(state, action)
+            // 执行回调函数
+            listeners.forEach((listener) => listener())
+        }
+        dispatch({}) // 初始化state
+        return { getState, dispatch, subscribe }
+      }
+    ```
+
+  **reducer**
+  * `createStore`接受一个叫`reducer`的函数作为参数，它接受两个参数，一个是`state`，一个是`action`
+  * `reducer`规定是一个纯函数，不允许有副作用，故`不能操作 DOM`、`不能发 Ajax 请求`、`直接修改state`，仅仅用来初始化和计算新的`state`
+  * 如果传入的`state`为`null`，则初始化`state`
+  * 如果传入的`state`有值，则通过`action`来更新数据
+
+
+  **Redux模式**
+  ```javascript
+  // 定一个 reducer
+  function reducer (state, action) {
+    /* 初始化 state 和 switch case */
   }
 
-  const store = createStore(appState, stateChanger)
-  let oldState = store.getState()
-  store.subscribe(() => {
-      const newState = store.getState()
-      console.log(newState === oldState) // => false
-      renderApp(newState, oldState)
-      oldState = newState
-  })
-  renderApp(oldState)
-  store.dispatch({type: 'UPDATE_TITLE_TEXT', text: 'hello'})
-  store.dispatch({type: 'UPDATE_CONTENT_COLOR', color: 'green'})
+  // 生成 store
+  const store = createStore(reducer)
+
+  // 监听数据变化重新渲染页面
+  store.subscribe(() => renderApp(store.getState()))
+
+  // 首次渲染页面
+  renderApp(store.getState()) 
+
+  // 后面可以随意 dispatch 了，页面自动更新
+  store.dispatch(...)
   ```
