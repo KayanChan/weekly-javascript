@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .tc {
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <div class="clock tc" id="clock"></div>
+    <script>
+        function initClock(canvasDOM, config) {
+            var ctx, date, hours, minutes, seconds;
+
+            ctx = canvasDOM.getContext('2d');
+
+            date = new Date(config.timestamp);
+            hours = date.getHours();
+            minutes = date.getMinutes();
+            seconds = date.getSeconds();
+            hours = hours > 12 ? hours - 12 : hours;
+
+            // clear
+            ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+
+            // drawBg
+            ctx.fillStyle = config.bgColor;
+            ctx.fillRect(0, 0, config.width, config.height);
+            ctx.translate(config.width / 2, config.height / 2);
+
+            // drawClockScale
+            ctx.lineCap = 'round';
+            ctx.lineWidth = config.clockScaleWidth;
+            ctx.strokeStyle = config.clockScaleBgColor;
+            for (var n = 0; n <= 11; n++) {
+                // 弧的圆形的三点钟位置是 0 度
+                var theta = (n - 3) * (Math.PI * 2) / 12,
+                    x1 = config.radius * Math.cos(theta),
+                    y1 = config.radius * Math.sin(theta),
+                    x2 = x1 - (config.clockScaleHeight * Math.sin(30 * n * Math.PI/180)),
+                    y2 = y1 + (config.clockScaleHeight * Math.cos(30 * n * Math.PI/180));
+
+                ctx.beginPath();
+                ctx.moveTo(x1, y1);
+                ctx.lineTo(x2, y2);
+                ctx.stroke();
+            }
+
+            // drawHour();
+            ctx.save();
+
+            ctx.lineCap = 'round';
+            ctx.lineWidth = config.hourHandSize;
+            ctx.strokeStyle = config.hourHandBgColor;
+            theta = ((hours + minutes / 60) - 3) * 2 * Math.PI / 12;
+            ctx.rotate(theta);
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(config.radius * 0.4, 0);
+            ctx.stroke();
+            ctx.restore();
+
+
+            // drawMinute
+            ctx.save();
+
+            ctx.lineCap = 'round';
+            ctx.lineWidth = config.minuteHandSize;
+            ctx.strokeStyle = config.minuteHandBgColor;
+            theta = ((minutes + seconds / 60) - 15) * 2 * Math.PI / 60;
+            ctx.rotate(theta);
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(config.radius * 0.6, 0);
+            ctx.stroke();
+            ctx.restore();
+
+            // drawSecond
+            ctx.save();
+
+            ctx.lineCap = 'round';
+            ctx.lineWidth = config.secondHandSize;
+            ctx.strokeStyle = config.secondHandBgColor;
+            theta = (seconds - 15) * 2 * Math.PI / 60;
+            ctx.rotate(theta);
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(config.radius * 0.8, 0);
+            ctx.stroke();
+            ctx.restore();
+
+            // drawCireclePoint
+            ctx.save();
+
+            ctx.fillStyle = ctx.strokeStyle = config.circlePointBgColor;
+            ctx.beginPath();
+            ctx.arc(0, 0, (config.circlePointSize / 2), 0, 2*Math.PI);
+            ctx.fill();
+            ctx.stroke();
+
+            // 恢复至(0, 0)
+            ctx.translate(-config.width / 2, -config.height / 2);
+        }
+
+        (function() {
+            var default_config = {
+                timestamp: +new Date(),
+                width: 500,
+                height: 500,
+                radius: 200,
+                bgColor: '#5CD1FD',
+                clockScaleWidth: 2,
+                clockScaleHeight: 10,
+                clockScaleBgColor: '#FFF',
+                circlePointSize: 8,
+                circlePointBgColor: '#FFF',
+                hourHandSize: 10,
+                hourHandBgColor: '#FFF',
+                minuteHandSize: 10,
+                minuteHandBgColor: '#FFF',
+                secondHandSize: 4,
+                secondHandBgColor: '#FFF'
+            };
+
+            var config = {
+                id: 'clock_' + (+new Date())
+            };
+
+            for(var i in default_config) {
+                if(!config[i]) config[i] = default_config[i];
+            }
+
+            var canvasDOM = window.document.createElement('canvas');
+            canvasDOM.innerHTML = '不支持HTML元素"canvas"';
+            canvasDOM.setAttribute('id', config.id);
+            canvasDOM.setAttribute('width', config.width);
+            canvasDOM.setAttribute('height', config.height);
+            window.document.getElementById('clock').appendChild(canvasDOM);
+            initClock(canvasDOM, config);
+            setInterval(function() {
+                config.timestamp += 1000;
+                initClock(canvasDOM, config);
+            }, 1000);
+        })();
+    </script>
+</body>
+</html>

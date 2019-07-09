@@ -131,3 +131,7 @@
    const obj2 = { ...obj } // => { a: 1, b: 2 }
    const obj3 = { ...obj, b: 3, c: 4} // => { a: 1, b: 3, c: 4 }，覆盖了 b，新增了 c
    ```
+
+#### @2019-07-09 时钟的绘制
+   * [原生js+DOM绘制](https://github.com/KayanChan/weekly-javascript/blob/master/clock/clock/dom-clock.html)
+   * [canvas绘制](https://github.com/KayanChan/weekly-javascript/blob/master/clock/canvas-clock.html)

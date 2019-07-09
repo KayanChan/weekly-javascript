@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>时钟</title>
+  <style>
+    .bg-box {
+      margin: 0 auto;
+      padding: 100px 0;
+      width: 500px;
+      height: 300px;
+      background-color: #5CD1FD;
+    }
+    .clock {
+      position: relative;
+      margin: 0 auto;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      border: 1px solid #FFF;
+    }
+    .scale {
+      position: absolute;
+      width: 4px;
+      height: 20px;
+      border-radius: 2px;
+      background-color: #FFF;
+      transform-origin: 0 0 0;
+    }
+    .circle-point {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      border: 1px solid #000;
+      background-color: #FFF;
+    }
+    .hour-hand {
+      position: absolute;
+      width: 10px;
+      height: 70px;
+      border-radius: 5px;
+      background-color: #FFF;
+      transform-origin: center bottom 0;
+    }
+    .minute-hand {
+      position: absolute;
+      width: 10px;
+      height: 100px;
+      border-radius: 5px;
+      background-color: #999;
+      transform-origin: center bottom 0;
+    }
+    .second-hand {
+      position: absolute;
+      width: 2px;
+      height: 120px;
+      border-radius: 1px;
+      background-color: #FFF;
+      transform-origin: center bottom 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-box">
+    <div class="clock">
+      <div class="scale"></div>
+      <div class="scale"></div>
+      <div class="scale"></div>
+      <div class="scale"></div>
+      <div class="scale"></div>
+      <div class="scale"></div>
+      <div class="scale"></div>
+      <div class="scale"></div>
+      <div class="scale"></div>
+      <div class="scale"></div>
+      <div class="scale"></div>
+      <div class="scale"></div>
+      <div class="hour-hand"></div>
+      <div class="minute-hand"></div>
+      <div class="second-hand"></div>
+      <div class="circle-point"></div>
+    </div>
+  </div>
+  <div class="bg-box">
+    <div id="clock"></div>
+  </div>
+  <script type="text/javascript">
+    var clock = document.getElementsByClassName('clock')[0];
+
+    function renderScalePosition(domObj, r, angle) {
+        domObj.style.left = computeScaleLeftTop(r, angle).left + 'px';
+        domObj.style.top = computeScaleLeftTop(r, angle).top + 'px';
+        domObj.style.transform = 'rotate(' + angle + 'deg)';
+    }
+
+    function computeScaleLeftTop(r, angle) {
+        var radian = angle * Math.PI / 180,
+            x = r * (Math.sin(radian)).toFixed(2),
+            y = r * (Math.cos(radian)).toFixed(2);
+        return {
+            left: Math.abs(x+r),
+            top: Math.abs(y-r)
+        }
+    }
+
+    for(var i=0; i<12; i++) {
+        var domObj = clock.getElementsByClassName('scale')[i];
+        renderScalePosition(domObj, 150, i*30);
+    }
+
+    function renderCirclePoint() {
+        var circlePoint = clock.getElementsByClassName('circle-point')[0];
+        circlePoint.style.left = circlePoint.style.top = '50%';
+        circlePoint.style.marginLeft = - (circlePoint.offsetWidth / 2) + 'px';
+        circlePoint.style.marginTop = - (circlePoint.offsetHeight / 2) + 'px';
+    }
+
+    function renderHourHand() {
+        var hourHand = clock.getElementsByClassName('hour-hand')[0];
+        hourHand.style.left = hourHand.style.top = '50%';
+        hourHand.style.marginLeft = - (hourHand.offsetWidth / 2) + 'px';
+        hourHand.style.marginTop = -hourHand.offsetHeight + 'px';
+    }
+
+    function renderMinuteHand() {
+        var minuteHand = clock.getElementsByClassName('minute-hand')[0];
+        minuteHand.style.left = minuteHand.style.top = '50%';
+        minuteHand.style.marginLeft = - (minuteHand.offsetWidth / 2) + 'px';
+        minuteHand.style.marginTop = -minuteHand.offsetHeight + 'px';
+    }
+
+    function renderSecondHand() {
+        var secondHand = clock.getElementsByClassName('second-hand')[0];
+        secondHand.style.left = secondHand.style.top = '50%';
+        secondHand.style.marginLeft = - (secondHand.offsetWidth / 2) + 'px';
+        secondHand.style.marginTop = -secondHand.offsetHeight + 'px';
+    }
+
+    renderCirclePoint();
+    renderHourHand();
+    renderMinuteHand();
+    renderSecondHand();
+
+
+    var date = new Date(),
+        hour = date.getHours(),
+        minute = date.getMinutes(),
+        second = date.getSeconds();
+
+    function renderSecondHandPosition(second) {
+        var secondHand = clock.getElementsByClassName('second-hand')[0];
+        secondHand.style.transform = 'rotate(' + 6*second + 'deg)';
+    }
+
+    function renderMinuteHandPosition(minute) {
+        var minuteHand = clock.getElementsByClassName('minute-hand')[0];
+        minuteHand.style.transform = 'rotate(' + 6*minute + 'deg)';
+    }
+
+    function renderHourHandPosition(hour, minute) {
+        var hourHand = clock.getElementsByClassName('hour-hand')[0];
+        var _hour = hour > 12 ? hour -12 : hour;
+        hourHand.style.transform = 'rotate(' + (30*_hour + minute/60*30 ) + 'deg)';
+    }
+
+    renderSecondHandPosition(second);
+    renderMinuteHandPosition(minute);
+    renderHourHandPosition(hour, minute);
+
+    setInterval(function() {
+        second++;
+        renderSecondHandPosition(second);
+        if(second==60) {
+            second = 0;
+            minute += 1;
+            renderMinuteHandPosition(minute);
+        }
+        if(minute==60) {
+            minute = 0;
+            hour += 1;
+            renderHourHandPosition(hour, minute);
+        }
+    }, 1000);
+  </script>
+</body>
+</html>
