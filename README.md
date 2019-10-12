@@ -27,9 +27,15 @@
 
 #### @2019-07-04 [纯函数(Pure Function)](https://github.com/KayanChan/weekly-javascript/blob/master/js-summary/pure-function.md)
 
-#### @2019-07-05 [ES6的`...`符号： 浅复制对象，还可以覆盖、拓展对象属性](https://github.com/KayanChan/weekly-javascript/blob/master/es6-summary/spread.md)
+#### @2019-07-05 [ES6的`...`符号](https://github.com/KayanChan/weekly-javascript/blob/master/es6-summary/spread.md)： 浅复制对象，还可以覆盖、拓展对象属性
 
 #### @2019-07-09 时钟的绘制
    * [原生js+DOM绘制](https://github.com/KayanChan/weekly-javascript/blob/master/clock/clock/dom-clock.html)
    * [canvas绘制](https://github.com/KayanChan/weekly-javascript/blob/master/clock/canvas-clock.html)
    * [使用Redux原理绘制](https://github.com/KayanChan/weekly-javascript/blob/master/clock/redux-clock.html)
+
+#### @2019-10-12 SEO
+   * 搜索引擎的工作原理
+   * SEO介绍
+   * SEO一般优化策略
+   * 针对单页面应用的优化策略
