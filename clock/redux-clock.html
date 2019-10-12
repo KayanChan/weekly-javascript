@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>时钟</title>
+  <style>
+    .bg-box {
+      margin: 0 auto;
+      padding: 100px 0;
+      background-color: #5CD1FD;
+    }
+    .clock {
+      position: relative;
+      margin: 0 auto;
+      border-radius: 50%;
+    }
+    .scale {
+      position: absolute;
+      width: 4px;
+      height: 20px;
+      border-radius: 2px;
+      background-color: #FFF;
+      transform-origin: 0 0 0;
+    }
+    .circle-point {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 50%;
+    }
+    .hour-hand {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 5px;
+      transform-origin: center top 0;
+    }
+    .minute-hand {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 5px;
+      transform-origin: center top 0;
+    }
+    .second-hand {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      border-radius: 1px;
+      transform-origin: center top 0;
+    }
+  </style>
+</head>
+<body>
+    <div class="bg-box">
+        <div class="clock">
+            <div class="scale"></div>
+            <div class="scale"></div>
+            <div class="scale"></div>
+            <div class="scale"></div>
+            <div class="scale"></div>
+            <div class="scale"></div>
+            <div class="scale"></div>
+            <div class="scale"></div>
+            <div class="scale"></div>
+            <div class="scale"></div>
+            <div class="scale"></div>
+            <div class="scale"></div>
+            <div class="hour-hand"></div>
+            <div class="minute-hand"></div>
+            <div class="second-hand"></div>
+            <div class="circle-point"></div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        const clock = document.getElementsByClassName('clock')[0];
+        const circlePointDOM = clock.getElementsByClassName('circle-point')[0];
+        const hourHandDOM = clock.getElementsByClassName('hour-hand')[0];
+        const minuteHandDOM = clock.getElementsByClassName('minute-hand')[0];
+        const secondHandDOM = clock.getElementsByClassName('second-hand')[0];
+        const clockState = {
+            raduis: 150,
+            circlePoint: {
+                size: 8,
+                bgColor: '#FFF'
+            },
+            hourHand: {
+                size: 10,
+                bgColor: '#FFF',
+                rotate: 0
+            },
+            minuteHand: {
+                size: 10,
+                bgColor: '#FFF',
+                rotate: 0
+            },
+            secondHand: {
+                size: 2,
+                bgColor: '#FFF',
+                rotate: 0
+            }
+        }
+
+        function renderClock(newState, oldState = {}) {
+            if(newState === oldState) return
+            renderClockScale(newState.raduis, oldState.raduis);
+            renderCirclePoint(newState.circlePoint, oldState.circlePoint);
+            renderHourHand(newState.raduis, oldState.raduis, newState.hourHand, oldState.hourHand);
+            renderMinuteHand(newState.raduis, oldState.raduis, newState.minuteHand, oldState.minuteHand);
+            renderSecondHand(newState.raduis, oldState.raduis, newState.secondHand, oldState.secondHand);
+        }
+
+        function renderClockScale(newRaduis, oldRadius) {
+            if(newRaduis === oldRadius) return
+            clock.style.width = clock.style.height = newRaduis*2 + 'px';
+            for(let i=0; i<12; i++) {
+                let domObj = clock.getElementsByClassName('scale')[i];
+                let radian = i*30 * Math.PI / 180,
+                    x = newRaduis * (Math.sin(radian)).toFixed(2),
+                    y = newRaduis * (Math.cos(radian)).toFixed(2);
+                domObj.style.left = Math.abs(x+newRaduis) + 'px';
+                domObj.style.top =  Math.abs(y-newRaduis) + 'px';
+                domObj.style.transform = 'rotate(' + i*30 + 'deg)';
+            }
+        }
+
+        function renderCirclePoint(newCirclePoint, oldCirclePoint = {}) {
+            if(newCirclePoint === oldCirclePoint) return
+            circlePointDOM.style.width = circlePointDOM.style.height = newCirclePoint.size + 'px';
+            circlePointDOM.style.marginLeft = - (newCirclePoint.size / 2) + 'px';
+            circlePointDOM.style.marginTop = - (newCirclePoint.size / 2) + 'px';
+            circlePointDOM.style.backgroundColor = newCirclePoint.bgColor;
+        }
+
+        function renderHourHand(newRaduis, oldRadius, newHourHand, oldHourhand = {}) {
+            if(newRaduis === oldRadius && newHourHand === oldHourhand) return
+            hourHandDOM.style.width = newHourHand.size + 'px';
+            hourHandDOM.style.height = newRaduis * 0.4 + 'px';
+            hourHandDOM.style.marginLeft = - (newHourHand.size / 2) + 'px';
+            hourHandDOM.style.marginTop = -newHourHand.size + 'px';
+            hourHandDOM.style.backgroundColor = newHourHand.bgColor;
+            hourHandDOM.style.transform = 'rotate(' + newHourHand.rotate + 'deg)';
+        }
+
+        function renderMinuteHand(newRaduis, oldRadius, newMinuteHand, oldMinuteHand = {}) {
+            if(newRaduis === oldRadius && newMinuteHand === oldMinuteHand) return
+            minuteHandDOM.style.width = newMinuteHand.size + 'px';
+            minuteHandDOM.style.height = newRaduis * 0.6 + 'px';
+            minuteHandDOM.style.marginLeft = - (newMinuteHand.size / 2) + 'px';
+            minuteHandDOM.style.marginTop = -newMinuteHand.size + 'px';
+            minuteHandDOM.style.backgroundColor = newMinuteHand.bgColor;
+            minuteHandDOM.style.transform = 'rotate(' + newMinuteHand.rotate + 'deg)';
+        }
+
+        function renderSecondHand(newRaduis, oldRadius, newSecondHand, oldSecondHand = {}) {
+            if(newRaduis === oldRadius && newSecondHand === oldSecondHand) return
+            secondHandDOM.style.width = newSecondHand.size + 'px';
+            secondHandDOM.style.height = newRaduis * 0.6 + 'px';
+            secondHandDOM.style.marginLeft = - (newSecondHand.size / 2) + 'px';
+            secondHandDOM.style.marginTop = -newSecondHand.size + 'px';
+            secondHandDOM.style.backgroundColor = newSecondHand.bgColor;
+            secondHandDOM.style.transform = 'rotate(' + newSecondHand.rotate + 'deg)';
+        }
+
+        function stateChanger(state, action) {
+            switch(action.type) {
+                case 'UPDATE_RADUIS':
+                    return {
+                        ...state,
+                        raduis: action.raduis
+                    }
+                case 'UPDATE_CIRCLEPOINT_SIZE':
+                    return {
+                        ...state,
+                        circlePoint: {
+                            ...state.circlePoint,
+                            size: action.size
+                        }
+                    }
+                case 'UPDATE_CIRCLEPOINT_BGCOLOR':
+                    return {
+                        ...state,
+                        circlePoint: {
+                            ...state.circlePoint,
+                            bgColor: action.bgColor
+                        }
+                    }
+                case 'UPDATE_HOURHAND_SIZE':
+                    return {
+                        ...state,
+                        hourHand: {
+                            ...state.hourHand,
+                            size: action.size
+                        }
+                    }
+                case 'UPDATE_HOURHAND_BGCOLOR':
+                    return {
+                        ...state,
+                        hourHand: {
+                            ...state.hourHand,
+                            bgColor: action.bgColor
+                        }
+                    }
+                case 'UPDATE_HOURHAND_ROTATE':
+                    return {
+                        ...state,
+                        hourHand: {
+                            ...state.hourHand,
+                            rotate: action.rotate
+                        }
+                    }
+                case 'UPDATE_MINUTEHAND_SIZE':
+                    return {
+                        ...state,
+                        minuteHand: {
+                            ...state.minuteHand,
+                            size: action.size
+                        }
+                    }
+                case 'UPDATE_MINUTEHAND_BGCOLOR':
+                    return {
+                        ...state,
+                        minuteHand: {
+                            ...state.minuteHand,
+                            bgColor: action.bgColor
+                        }
+                    }
+                case 'UPDATE_MINUTEHAND_ROTATE':
+                    return {
+                        ...state,
+                        minuteHand: {
+                            ...state.minuteHand,
+                            rotate: action.rotate
+                        }
+                    }
+                case 'UPDATE_SECONDHAND_SIZE':
+                    return {
+                        ...state,
+                        secondHand: {
+                            ...state.secondHand,
+                            size: action.size
+                        }
+                    }
+                case 'UPDATE_SECONDHAND_BGCOLOR':
+                    return {
+                        ...state,
+                        secondHand: {
+                            ...state.secondHand,
+                            bgColor: action.bgColor
+                        }
+                    }
+                case 'UPDATE_SECONDHAND_ROTATE':
+                    return {
+                        ...state,
+                        secondHand: {
+                            ...state.secondHand,
+                            rotate: action.rotate
+                        }
+                    }
+                default:
+                    return state
+            }
+        }
+
+        function createStore(state, stateChanger) {
+            const listeners = []
+            const subscribe = (listener) => listeners.push(listener)
+            const getState = () => state
+            const dispatch = (action) => {
+                state = stateChanger(state, action)
+                listeners.forEach((listener => listener()))
+            }
+            return {getState, dispatch, subscribe}
+        }
+
+        const store = createStore(clockState, stateChanger);
+        let oldState = store.getState()
+        store.subscribe(() => {
+            const newState = store.getState()
+            renderClock(newState, oldState)
+            oldState = newState
+        })
+
+        var date = new Date(),
+            hour = date.getHours(),
+            minute = date.getMinutes(),
+            second = date.getSeconds();
+        hour = hour > 12 ? hour -12 : hour;
+
+        store.dispatch({type: 'UPDATE_SECONDHAND_ROTATE', rotate: 6*second-180})
+        store.dispatch({type: 'UPDATE_MINUTEHAND_ROTATE', rotate: 6*minute-180})
+        store.dispatch({type: 'UPDATE_HOURHAND_ROTATE', rotate: (30*hour + minute/60*30) - 180})
+        renderClock(oldState);
+
+        setInterval(function() {
+            second++;
+            store.dispatch({type: 'UPDATE_SECONDHAND_ROTATE', rotate: 6*second-180})
+            if(second==60) {
+                second = 0;
+                minute += 1;
+                store.dispatch({type: 'UPDATE_MINUTEHAND_ROTATE', rotate: 6*minute-180})
+            }
+            if(minute==60) {
+                minute = 0;
+                hour += 1;
+                store.dispatch({type: 'UPDATE_HOURHAND_ROTATE', rotate: (30*hour + minute/60*30)-180})
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
