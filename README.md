@@ -39,3 +39,11 @@
    * SEO介绍
    * SEO一般优化策略
    * 针对单页面应用的优化策略
+
+#### @2019-10-14 Flex
+   * display: flex  //设置Flex模式
+   * flex-direction: column  [row|row-reverse|column|column-reverse] //决定元素是横排还是竖着排
+   * flex-wrap: wrap  [nowrap|wrap|wrap-reverse] //决定元素换行格式
+   * justify-content: space-between [flex-start|flex-end|center|space-between|space-around] //同一排下对齐方式，空格如何隔开各个元素
+   * align-items: center [stretch|center|flex-start|flex-end|baseline] //同一排下元素如何对齐
+   * align-content: space-between [stretch|center|flex-start|flex-end|space-between|space-around] //多行对齐方式
