@@ -47,3 +47,28 @@
    * justify-content: space-between [flex-start|flex-end|center|space-between|space-around] //同一排下对齐方式，空格如何隔开各个元素
    * align-items: center [stretch|center|flex-start|flex-end|baseline] //同一排下元素如何对齐
    * align-content: space-between [stretch|center|flex-start|flex-end|space-between|space-around] //多行对齐方式
+
+#### @2019-10-14 文本省略
+   * 单行
+      ```CSS
+      width: 100%;
+      white-space: no-wrap;
+      text-overflow: ellipsis;
+      overflow : hidden;
+      ```
+   * 多行: `-webkit-line-clamp` 指定行数
+      ```CSS
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      text-overflow: ellipsis;
+      overflow : hidden;
+      ```
+
+#### @2019-10-14 React渲染原理
+   * Virtual Dom模型
+   * 生命周期管理
+   * setState机制
+   * Diff算法
+   * React patch、事件系统
+   * React的Virtual Dom模型
