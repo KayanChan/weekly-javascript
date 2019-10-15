@@ -1,6 +1,18 @@
 ### 第二部分 生命周期
 @2019-07-03 整理出自[这里](http://huziketang.mangojuice.top/books/react/lesson17)
 
+@2019-10-15 [React生命周期(包括react16版)]((https://github.com/aermin/blog/issues/55))
+
+#### React组件
+  1. React组件由属性`props`、状态`state`、生命周期方法组成
+  2. 一旦接受到的参数`props`或自身状态`state`有所改变，React组件就会执行相应的生命周期方法。
+
+#### 生命周期阶段(react16版前后具体钩子函数有区别)
+  1. 组件初始化(initialization)阶段
+  2. 组件的挂载(Mounting)阶段
+  3. 组件的更新(update)阶段
+  4. 组件的卸载(unMount)阶段
+
 #### 组件挂载阶段的过程
   * `React.js`的页面挂载
     ```javascript

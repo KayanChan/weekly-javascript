@@ -65,10 +65,9 @@
       overflow : hidden;
       ```
 
-#### @2019-10-14 React渲染原理
-   * Virtual Dom模型
-   * 生命周期管理
-   * setState机制
-   * Diff算法
+#### @2019-10-14 React核心原理
+   * [Virtual Dom模型](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/virtual-dom.md)
+   * [生命周期管理](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/life-cycle.md)
+   * [setState运行机制](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/setState.md)
+   * [Diff算法](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/diff.md)
    * React patch、事件系统
-   * React的Virtual Dom模型
