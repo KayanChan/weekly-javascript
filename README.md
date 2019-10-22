@@ -70,4 +70,11 @@
    * [生命周期管理](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/life-cycle.md)
    * [setState运行机制](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/setState.md)
    * [Diff算法](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/diff.md)
+   * [组件](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/component.md)
    * React patch、事件系统
+
+#### @2019-10-21 [(未完待补充)JSS与React集成](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/jss.md)
+
+#### @2019-10-21 [MobX](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/Mobx.md)
+
+#### @2019-10-22 [react使用装饰器@](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/decorator.md)
