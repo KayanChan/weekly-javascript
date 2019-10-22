@@ -3,6 +3,7 @@
   * `setState`是同步执行的，但是`state`并不一定会同步更新
   * 经过React处理的事件(生命周期钩子和类似通过onClick引发的合成事件)是不会同步更新`this.state`
   * 通过`addEventListener`、`setTimeout/setInterval`、`promise`等异步方式处理的则会同步更新`this.state`
+  * 受控组件(表单元素（如`<input>、 <textarea> 和 <select>`）之类的)通常自己维护`state`，并根据用户输入进行更新
   
   #### 同步批量执行
     1. 多次同步执行的setState,会提取单次传递setState的对象，
@@ -76,7 +77,7 @@
       // });
 
       // 3,6,9达到期望
-      this.setState((prevState) => {
+      this.setState((prevState, props) => {
         return {count: prevState.count + 1}
       })
     }
