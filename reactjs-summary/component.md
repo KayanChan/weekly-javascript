@@ -17,10 +17,10 @@
   4. 无状态组件只能访问输入的props
 
   > 无状态组件内部其实是可以使用ref功能的
-  > 虽然不能通过this.refs访问到，但是可以通过将ref内容保存到无状态组件内部的一个本地变量中获取到
+  > 虽然不能通过`this.refs`访问到，但是可以通过将ref内容保存到无状态组件内部的一个本地变量中获取到
 
-#### React.createClass(**不建议使用此方式,仅了解**)
-  > ES5的原生的JavaScript来实现的React组件
+#### `React.createClass`(**不建议使用此方式,仅了解**)
+  > `ES5`的原生的JavaScript来实现的React组件
 
   ```javascript
   var InputControlES5 = React.createClass({
@@ -93,29 +93,32 @@
   2. 成员函数不会自动绑定this，需要开发者手动绑定，否则this不能获取当前组件实例对象(见`handleClick内的console`)
   3. 组件props的属性类型及组件默认的属性，通过**类(作为组件类)的静态属性**来配置的
   4. state是在constructor中像初始化组件属性一样声明的
-  5. 不支持Mixins,可以用`Higher-Order Components`来取代
+  5. 不支持`Mixins`,可以用`Higher-Order Components`来取代
 
   ##### 手动绑定this
   1. 构造函数中绑定
-    ```javascript
-    constructor(props) {
+
+```javascript
+constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
-    }
-    ```
+}
+```
   2. 使用bind来绑定`<div onClick={this.handleClick.bind(this)}></div>`
   3. 使用箭头函数绑定
-    ```javascript
-    // <div onClick={()=>this.handleClick()}></div>
-    // 不建议，在 render 方法中使用箭头函数也会在每次组件渲染时创建一个新的函数，这会破坏基于恒等比较的性能优化。
-    // ---------------------------------------------
 
-    // jsx
-    // <DatePicker onChange={this.handleChange}/>
+```javascript
+// 方法一：直接在DOM使用箭头函数
+// 不建议，在 render 方法中使用箭头函数也会在每次组件渲染时创建一个新的函数，这会破坏基于恒等比较的性能优化。
+// <div onClick={()=>this.handleClick()}></div>
+
+// 方法二：函数定义时使用箭头函数，jsx直接使用this
+	// jsx
+	// <DatePicker onChange={this.handleChange}/>
 
     handleChange = (date) => {
       console.log(date)
       message.info(`您选择的日期是:${date.format('YYYY-MM-DD')}`)
       this.setState({date})
     }
-    ```
+```

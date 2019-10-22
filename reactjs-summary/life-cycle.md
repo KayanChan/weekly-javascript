@@ -73,10 +73,8 @@
 #### ref & React.js的DOM操作
   * 在`JSX元素`的`ref`属性来获取已经挂载的`DOM节点`
   * `ref`属性的值是一个函数，当该元素在页面上挂载完成就会调用这个函数
-  ```javascript
-  ...
-  <input type="text" value={this.state.value} onChange={this.handleUsernameChange.bind(this)} ref={(input => this.input = input)}/>
-  ...
+  ```jsx
+ <input type="text" value={this.state.value} onChange={this.handleUsernameChange.bind(this)} ref={(input => this.input = input)}/>
   ```
 
 #### props.children & 容器组件
@@ -128,7 +126,7 @@
   * 安装第三方库，检查组件的配置参数的类型
     ```bash
     npm install --save prop-types
-    ```
+  ```
 
   * 组件添加类属性`propTypes`
   ```javascript
