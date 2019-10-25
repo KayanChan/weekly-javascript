@@ -34,7 +34,7 @@
    * [canvas绘制](https://github.com/KayanChan/weekly-javascript/blob/master/clock/canvas-clock.html)
    * [使用Redux原理绘制](https://github.com/KayanChan/weekly-javascript/blob/master/clock/redux-clock.html)
 
-#### @2019-10-12 SEO
+#### @2019-10-12 [SEO](https://github.com/KayanChan/weekly-javascript/blob/master/seo/README.md)
    * 搜索引擎的工作原理
    * SEO介绍
    * SEO一般优化策略
