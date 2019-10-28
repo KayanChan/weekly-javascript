@@ -96,4 +96,26 @@
         }
         }
         ```
-
+8. react的状态存储(store): Mobx
+    * 安装
+        ```bash
+        yarn add mobx mobx-react
+        ```
+    * 全局挂载store
+        ```javascript
+        import { Provider } from 'mobx-react'
+        function App() {
+            return (
+                <Provider {...store}>
+                <BrowserRouter>
+                    <Router />
+                </BrowserRouter>
+                </Provider>
+            )
+        }
+        ```
+9. 图表库：bizcharts
+    * 安装
+        ```bash
+        yarn add bizcharts
+        ```
