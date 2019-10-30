@@ -78,3 +78,5 @@
 #### @2019-10-21 [MobX](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/Mobx.md)
 
 #### @2019-10-22 [react使用装饰器@](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/decorator.md)
+
+#### @2019-10-30 [npm 本地安装 VS 全局安装](https://github.com/KayanChan/weekly-javascript/blob/master/npm-yarn/npm-local-vs-global.md)
