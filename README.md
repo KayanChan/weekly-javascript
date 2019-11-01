@@ -34,12 +34,6 @@
    * [canvas绘制](https://github.com/KayanChan/weekly-javascript/blob/master/clock/canvas-clock.html)
    * [使用Redux原理绘制](https://github.com/KayanChan/weekly-javascript/blob/master/clock/redux-clock.html)
 
-#### @2019-10-12 [SEO](https://github.com/KayanChan/weekly-javascript/blob/master/seo/README.md)
-   * 搜索引擎的工作原理
-   * SEO介绍
-   * SEO一般优化策略
-   * 针对单页面应用的优化策略
-
 #### @2019-10-14 Flex
    * display: flex  //设置Flex模式
    * flex-direction: column  [row|row-reverse|column|column-reverse] //决定元素是横排还是竖着排
@@ -78,7 +72,5 @@
 #### @2019-10-21 [MobX](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/Mobx.md)
 
 #### @2019-10-22 [react使用装饰器@](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/decorator.md)
-
-#### @2019-10-30 [npm 本地安装 VS 全局安装](https://github.com/KayanChan/weekly-javascript/blob/master/npm-yarn/npm-local-vs-global.md)
 
 #### @2019-10-30 [webpack基本使用](https://github.com/KayanChan/weekly-javascript/blob/master/webpack/basic.md)
