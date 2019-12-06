@@ -74,3 +74,5 @@
 #### @2019-10-22 [react使用装饰器@](https://github.com/KayanChan/weekly-javascript/blob/master/reactjs-summary/decorator.md)
 
 #### @2019-10-30 [webpack基本使用](https://github.com/KayanChan/weekly-javascript/blob/master/webpack/basic.md)
+
+#### @2019-12-05 [长列表优化](https://github.com/KayanChan/weekly-javascript/blob/master/js-summary/long-list.md)
