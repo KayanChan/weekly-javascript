@@ -76,3 +76,8 @@
 #### @2019-10-30 [webpack基本使用](https://github.com/KayanChan/weekly-javascript/blob/master/webpack/basic.md)
 
 #### @2019-12-05 [长列表优化](https://github.com/KayanChan/weekly-javascript/blob/master/js-summary/long-list.md)
+
+#### @2019-12-09 [utils.js常见JS方法封装](https://github.com/KayanChan/weekly-javascript/blob/master/js-summary/utilsjs.md)
+   * fn.apply(obj, args): obj将代替fn类里的this;args是**数组**，作为参数传给fn
+   * fn.call(obj, params): obj将代替fn类里的this;params是参数列表
+   > apply与call区别在于参数列表不同
