@@ -81,3 +81,5 @@
    * fn.apply(obj, args): obj将代替fn类里的this;args是**数组**，作为参数传给fn
    * fn.call(obj, params): obj将代替fn类里的this;params是参数列表
    > apply与call区别在于参数列表不同
+
+#### @2019-12-23 [2019web前端进阶指南](https://github.com/KayanChan/weekly-javascript/blob/master/frontend-guide/2019-advanced-guide.md)
