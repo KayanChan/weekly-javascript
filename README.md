@@ -83,3 +83,25 @@
    > apply与call区别在于参数列表不同
 
 #### @2019-12-23 [2019web前端进阶指南](https://github.com/KayanChan/weekly-javascript/blob/master/frontend-guide/2019-advanced-guide.md)
+
+#### @2019-12-24 http权威指南
+- [x] [第1章 HTTP概述](https://github.com/KayanChan/weekly-javascript/blob/master/http/%E7%AC%AC1%E7%AB%A0_HTTP%E6%A6%82%E8%BF%B0.md)
+- [x] [第2章 URL与资源](https://github.com/KayanChan/weekly-javascript/blob/master/http/%E7%AC%AC2%E7%AB%A0_URL%E4%B8%8E%E8%B5%84%E6%BA%90.md)
+- [ ] 第4章 连接管理
+- [ ] 第5章 Web服务器
+- [ ] 第6章 代理
+- [ ] 第7章 缓存
+- [ ] 第8章 集成点：网关、隧道及中继
+- [ ] 第9章 Web机器人
+- [ ] 第10章 HTTP-NG
+- [ ] 第11章 客户端识别与cookie机制
+- [ ] 第12章 基本认证机制
+- [ ] 第13章 摘要认证
+- [ ] 第14章 安全HTTP
+- [ ] 第15章 实体和编码
+- [ ] 第16章 国际化
+- [ ] 第17章 内容协商与转码
+- [ ] 第18章 Web主机托管
+- [ ] 第19章 发布系统
+- [ ] 第20章 重定向与负载均衡
+- [ ] 第21章 日志记录与使用情况跟踪
