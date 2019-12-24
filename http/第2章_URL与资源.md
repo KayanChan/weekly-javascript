@@ -153,6 +153,6 @@
 
   **PURL(persistent uniform resource locators) 永久统一资源定位符**是用URL来实现URN功能
 
-  PURL的基本思想是搜索资源的过程中引入另一个中间层，通过一个中间资源定位服务器(http://purl.oclc.org)对资源的实际URL进行登记和跟踪
+  PURL的基本思想是搜索资源的过程中引入另一个中间层，通过一个[中间资源定位服务器](http://purl.oclc.org)对资源的实际URL进行登记和跟踪
 ## 2.7 更多信息 - 略
 
