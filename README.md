@@ -88,7 +88,7 @@
 - [x] [第1章 HTTP概述](https://github.com/KayanChan/weekly-javascript/blob/master/http/%E7%AC%AC1%E7%AB%A0_HTTP%E6%A6%82%E8%BF%B0.md)
 - [x] [第2章 URL与资源](https://github.com/KayanChan/weekly-javascript/blob/master/http/%E7%AC%AC2%E7%AB%A0_URL%E4%B8%8E%E8%B5%84%E6%BA%90.md)
 - [x] [第3章 HTTP报文](https://github.com/KayanChan/weekly-javascript/blob/master/http/%E7%AC%AC3%E7%AB%A0_HTTP%E6%8A%A5%E6%96%87.md)
-- [ ] 第4章 连接管理
+- [x] [第4章 连接管理](https://github.com/KayanChan/weekly-javascript/blob/master/http/%E7%AC%AC4%E7%AB%A0_%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86.md)
 - [ ] 第5章 Web服务器
 - [ ] 第6章 代理
 - [ ] 第7章 缓存
