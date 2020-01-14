@@ -90,7 +90,7 @@
 - [x] [第3章 HTTP报文](https://github.com/KayanChan/weekly-javascript/blob/master/http/%E7%AC%AC3%E7%AB%A0_HTTP%E6%8A%A5%E6%96%87.md)
 - [x] [第4章 连接管理](https://github.com/KayanChan/weekly-javascript/blob/master/http/%E7%AC%AC4%E7%AB%A0_%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86.md)
 - [x] [第5章 Web服务器](https://github.com/KayanChan/weekly-javascript/blob/master/http/%E7%AC%AC5%E7%AB%A0_Web%E6%9C%8D%E5%8A%A1%E5%99%A8.md)
-- [ ] 第6章 代理
+- [x] [第6章 代理](https://github.com/KayanChan/weekly-javascript/blob/master/http/%E7%AC%AC6%E7%AB%A0_%E4%BB%A3%E7%90%86.md)
 - [ ] 第7章 缓存
 - [ ] 第8章 集成点：网关、隧道及中继
 - [ ] 第9章 Web机器人
