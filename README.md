@@ -160,4 +160,25 @@ TS是JavaScript的一个超集，主要提供了类型系统和对ES6的支持�
 
 ##### 核心数据减少请求接口时间
 ##### 使用Webp缩小图片大小
-WebP（发音 weppy），是一种支持有损压缩和无损压缩的图片文件格式，派生自图像编码格式VP8。
+WebP是一种支持有损压缩和无损压缩的图片文件格式，派生自图像编码格式VP8。
+
+#### 2020-01-14 [TypeScipt学习](https://github.com/KayanChan/weekly-javascript/blob/master/ts-summary/typescript.md)
+[官网文档](http://www.typescriptlang.org/)
+[非官方中文文档](https://www.tslang.cn/)
+[参考文档](https://ts.xcatliu.com/)
+
+#### 2020-01-15 [待阅：JS 函数式编程指南](https://legacy.gitbook.com/book/llh911001/mostly-adequate-guide-chinese/details)
+
+#### 2020-03-25 host
+Hosts文件主要作用是定义IP地址和主机名的映射关系，是一个映射IP地址和主机名的规定
+
+在浏览器中通过域名访问网站，首先查看hosts文件中是否存在域名与IP的地址转换，如果存在则直接根据IP地址进行访问；否则向DNS服务器发送请求，根据返回结果中的IP进行访问
+
+HOSTS文件是在`C:\windows\system32\drivers\etc`
+
+用途：
+1. 在hosts中配置了常用的网址和IP的映射关系，就省去了向DNS服务器发送请求获取IP的过程，从而`更快的访问网站速度`
+2. 屏蔽网站，如在hosts中配置`127.0.0.1 www.baidu.com`，则访问百度时指向本地服务器地址，达到`屏蔽网站`的效果
+3. 记录常用IP地址，可将常用的ip地址(如内网中使用的一些IP地址，IP地址通常比较难记)转为域名记录，即达到访问域名，实际访问IP地址
+
+行首添加`#`以关闭映射转换(注释掉)
