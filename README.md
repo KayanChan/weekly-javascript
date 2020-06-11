@@ -182,3 +182,8 @@ HOSTS文件是在`C:\windows\system32\drivers\etc`
 3. 记录常用IP地址，可将常用的ip地址(如内网中使用的一些IP地址，IP地址通常比较难记)转为域名记录，即达到访问域名，实际访问IP地址
 
 行首添加`#`以关闭映射转换(注释掉)
+
+在`C:\windows\system32\drivers\etc`目录下，看不到`hosts`文件，打开显示隐藏文件设置，也看不到`hosts`文件存在时，可在地址栏直接访问`C:\windows\system32\drivers\etc\hosts`直接用编辑器打开访问，进行编辑
+
+编辑hosts文件之后，打开`cmd`刷新dns `ipconfig /flushdns`
+可以通过`ping www.baidu.com`这样来查看是否已经映射替换了IP
